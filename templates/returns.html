@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>📗 Return Management</h1>
+
+<table>
+
+<tr>
+    <th>Book</th>
+    <th>Member</th>
+    <th>Borrow Date</th>
+    <th>Return Date</th>
+</tr>
+
+{% for item in returned_books %}
+
+<tr>
+    <td>{{ item.book }}</td>
+    <td>{{ item.member }}</td>
+    <td>{{ item.borrow_date }}</td>
+    <td>{{ item.return_date }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

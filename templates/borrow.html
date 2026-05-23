@@ -1,0 +1,72 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>🔄 Borrow & Return System</h1>
+
+<form method="POST" class="borrow-form">
+
+    <select name="book">
+
+        {% for book in books %}
+            {% if book.status == 'Available' %}
+                <option>{{ book.title }}</option>
+            {% endif %}
+        {% endfor %}
+
+    </select>
+
+    <select name="member">
+
+        {% for member in members %}
+            <option>{{ member.name }}</option>
+        {% endfor %}
+
+    </select>
+
+    <button type="submit">Borrow Book</button>
+
+</form>
+
+<h2 class="section-title">Borrow History</h2>
+
+<table>
+
+<tr>
+    <th>Book</th>
+    <th>Member</th>
+    <th>Date</th>
+    <th>Status</th>
+    <th>Action</th>
+</tr>
+
+{% for item in history %}
+
+<tr>
+
+    <td>{{ item.book }}</td>
+    <td>{{ item.member }}</td>
+    <td>{{ item.date }}</td>
+    <td>{{ item.status }}</td>
+
+    <td>
+
+        {% if item.status == 'Borrowed' %}
+            <a class="return-btn"
+            href="/return/{{ item.book }}">
+            Return
+            </a>
+        {% else %}
+            ✅
+        {% endif %}
+
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}
